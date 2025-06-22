@@ -8,6 +8,26 @@
     background-color: lightgray;
 }
 
+.button {
+    width: 150px;
+    height: 48px;
+    border-radius: 29px;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 18px;
+}
+
+.button:hover {
+    outline: none;
+    background-color: black;
+    color: white;
+}
+
+#size-button {
+    display: block;
+    margin: 0px auto;
+}
+
 #grid {
     display: flex;
     justify-content: center;

@@ -1,4 +1,8 @@
 const grid = document.querySelector("#grid");
+const sizeButton = document.querySelector("#size-button");
+
+let x = 0;
+let y = 0;
 
 // x is the number of boxes horizontally
 // y is the number of boxes vertically
@@ -14,5 +18,12 @@ function createGrid(x, y) {
         }
     }
 }
+
+sizeButton.addEventListener("click", () => {
+    x = parseInt(prompt("X"));
+    y = parseInt(prompt("Y"));
+    grid.innerHTML = '';
+    createGrid(x, y);
+});
 
 createGrid(16, 16);
