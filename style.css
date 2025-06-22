@@ -101,3 +101,16 @@
 #size-popup-button {
     margin-top: 30px;
 }
+
+#blur {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 98;
+    pointer-events: all;
+}
