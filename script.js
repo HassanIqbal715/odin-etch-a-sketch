@@ -17,11 +17,31 @@ function createGrid() {
 
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-            var box = document.createElement("div");
-            box.classList.add("box");
+            const box = document.createElement("div");
             box.setAttribute("style", `
-                width: ${boxSize}px; height: ${boxSize}px
+                width: ${boxSize}px; height: ${boxSize}px;
             `);
+            let r = 0;
+            let g = 0;
+            let b = 0;
+            let a = 0;
+            box.addEventListener("mouseover", () => {
+                box.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
+            });
+            
+            box.addEventListener("mouseleave", () => {
+                box.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+            });
+
+            box.addEventListener("click", () => {
+                r = Math.floor(Math.random() * 255);
+                g = Math.floor(Math.random() * 255);
+                b = Math.floor(Math.random() * 255);
+                if (a < 1.0) {
+                    a += 0.1;
+                }
+                box.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+            });
             grid.appendChild(box);
         }
     }
@@ -45,7 +65,15 @@ sizeBtn.addEventListener("click", () => {
 sizePopupBtn.addEventListener("click", () => {
     if (checkInput(inputSize.value)) {
         size = parseInt(inputSize.value);
-        if (size > 0) {
+        if (size > 100) {
+            alert("Size too large!");
+            return;
+        }
+        else if (size <= 0) {
+            alert("Enter a positive value!");
+            return;
+        }
+        else {
             grid.innerHTML = '';
             createGrid();
         }
