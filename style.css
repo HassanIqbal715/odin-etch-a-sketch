@@ -1,10 +1,17 @@
 .box {
     width: 32px;
     height: 32px;
-    background-color: gray;
+    background-color: white;
+}
+
+.box:hover {
+    background-color: lightgray;
 }
 
 #grid {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+    margin: 10px auto;
+    border: solid 1px black;
 }
