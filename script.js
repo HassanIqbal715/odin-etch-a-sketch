@@ -3,22 +3,25 @@ const sizeBtn = document.querySelector("#size-button");
 const sizePopup = document.querySelector("#size-popup");
 const sizePopupBtn = document.querySelector("#size-popup-button");
 const sizePopupCloseBtn = document.querySelector("#size-popup-close");
-const inputX = document.querySelector("#input-x");
-const inputY = document.querySelector("#input-y");
+const inputSize = document.querySelector("#input-size");
 const blurElement = document.querySelector("#blur");
-let x = 16;
-let y = 16;
+let size = 16;
+let gridSize = 800;
 
 // x is the number of boxes horizontally
 // y is the number of boxes vertically
-function createGrid(x, y) {
-    var gridWidth = x * 32;
-    grid.style.width = `${gridWidth}px`;
+function createGrid() {
+    var boxSize = gridSize/size;
+    grid.style.width = `${gridSize}px`;
+    grid.style.height = `${gridSize}px`;
 
-    for (let i = 0; i < y; i++) {
-        for (let j = 0; j < x; j++) {
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
             var box = document.createElement("div");
             box.classList.add("box");
+            box.setAttribute("style", `
+                width: ${boxSize}px; height: ${boxSize}px
+            `);
             grid.appendChild(box);
         }
     }
@@ -29,8 +32,7 @@ function checkInput(value) {
 }
 
 function closePopup() {
-    inputX.value = '';
-    inputY.value = '';
+    inputSize.value = '';
     sizePopup.style.display = 'none';
     blurElement.style.display = 'none';
 }
@@ -41,12 +43,11 @@ sizeBtn.addEventListener("click", () => {
 });
 
 sizePopupBtn.addEventListener("click", () => {
-    if (checkInput(inputX.value) && checkInput(inputY.value)) {
-        x = parseInt(inputX.value);
-        y = parseInt(inputY.value);
-        if (x > 0 && y > 0) {
+    if (checkInput(inputSize.value)) {
+        size = parseInt(inputSize.value);
+        if (size > 0) {
             grid.innerHTML = '';
-            createGrid(x, y);
+            createGrid();
         }
     }
     closePopup();
@@ -56,4 +57,4 @@ sizePopupCloseBtn.addEventListener("click", () => {
     closePopup();
 });
 
-createGrid(16, 16);
+createGrid();
