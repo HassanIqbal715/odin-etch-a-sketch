@@ -1,0 +1,10 @@
+.box {
+    width: 32px;
+    height: 32px;
+    background-color: gray;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+}
